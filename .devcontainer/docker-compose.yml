@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Container do ambiente de desenvolvimento
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Mantém o container rodando para o VS Code se conectar
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    volumes:
+      # Mapa da raiz do seu projeto para dentro do container
+      - ../:/workspace:cached
+    environment:
+      - DATABASE_URL=postgresql://govuser:govpassword@db:5432/govdata
+    networks:
+      - dev_network
+    depends_on:
+      - db
+
+  # Banco de Dados PostgreSQL
+  db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: govuser
+      POSTGRES_PASSWORD: govpassword
+      POSTGRES_DB: govdata
+    volumes:
+      # Volume nomeado para não perder dados quando derrubar o container
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - dev_network
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres-data:
+
+networks:
+  dev_network:
+    driver: bridge
