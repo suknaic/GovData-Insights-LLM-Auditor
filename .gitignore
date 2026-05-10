@@ -1,0 +1,25 @@
+# Ambientes Virtuais
+venv/
+env/
+.env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# VS Code
+.vscode/
+
+# Configurações Locais
+.env
+.env.local
+
+# Dados e Modelos Locais
+data/*
+!data/.gitignore
+chroma_db/
