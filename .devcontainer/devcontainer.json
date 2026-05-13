@@ -1,28 +1,26 @@
 {
-  "name": "GovData Analytics Environment",
+  "name": "GovData Analytics Environment (Node.js)",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspace",
-  
+
   "customizations": {
     "vscode": {
       "settings": {
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
-        "python.formatting.provider": "black",
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "typescript.preferences.importModuleSpecifier": "shortest"
       },
       "extensions": [
-        "ms-python.python",
-        "ms-python.vscode-pylance",
-        "ms-python.black-formatter",
-        "ms-toolsai.jupyter",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
         "mtxr.sqltools",
         "mtxr.sqltools-driver-pg"
       ]
     }
   },
-
-  "remoteUser": "vscode",
-  
-  "postCreateCommand": "pip install -r requirements.txt || echo 'Crie um requirements.txt depois'"
+  "remoteUser": "node",
+  "postCreateCommand": "npm install && npm run db:push",
+  "forwardPorts": [8000, 8501, 5432]
 }

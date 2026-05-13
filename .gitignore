@@ -1,25 +1,33 @@
-# Ambientes Virtuais
-venv/
-env/
-.env/
+# Node
+node_modules/
+dist/
+.next/
+*.tsbuildinfo
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# VS Code
-.vscode/
-
-# Configurações Locais
+# Ambiente
 .env
 .env.local
+.env.*.local
 
-# Dados e Modelos Locais
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dados locais
 data/*
 !data/.gitignore
 chroma_db/
+temp_uploads/*
+!temp_uploads/.gitkeep
+
+# Python legado (mantido apenas como referência)
+# src/
+# dashboard/app.py
+# *.pyc
+# __pycache__/
